@@ -47,6 +47,7 @@ public class MessageListActivity extends AppCompatActivity {
         });
     }
 
+    //TO take picture
     private void takePicture(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 100);

@@ -8,6 +8,7 @@
     <!--Dangerous permission-->
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
+    <!--SAME GROUP-->
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <!--Dangerous permission-->

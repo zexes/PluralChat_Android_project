@@ -42,18 +42,8 @@ public class ChatListActivity extends AppCompatActivity implements ListView.OnIt
         super.onResume();
 
 //        requestReadContactsPermissions();//requesting Read Contacts Permission
-        requestLocationPermission();
     }
 
-    private void requestLocationPermission(){
-        if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-            return;
-
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                101);
-    }
 
     private void requestReadContactsPermissions(){
         ActivityCompat.requestPermissions(this,

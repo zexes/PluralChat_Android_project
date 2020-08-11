@@ -1,7 +1,12 @@
 package messagelistscreen;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,6 +50,41 @@ public class MessageListActivity extends AppCompatActivity {
                 takePicture();
             }
         });
+
+        findViewById(R.id.button_send_location).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendLocation();
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == 101){
+            if(grantResults.length >0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                // Permission was granted
+            } else{
+                // Permission was denied
+            }
+        }
+    }
+
+    private void sendLocation(){
+        requestLocationPermission();
+    }
+
+    private void requestLocationPermission(){
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            return;
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                101);
     }
 
     //TO take picture

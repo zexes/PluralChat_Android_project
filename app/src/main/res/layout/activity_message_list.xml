@@ -72,6 +72,17 @@
             android:gravity="center"
             android:layout_gravity="bottom" />
 
+        <ImageView
+            android:id="@+id/button_send_location"
+            android:src="@drawable/android_location"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:layout_gravity="bottom" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

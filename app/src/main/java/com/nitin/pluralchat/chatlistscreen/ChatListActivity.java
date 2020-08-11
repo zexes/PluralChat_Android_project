@@ -39,7 +39,7 @@ public class ChatListActivity extends AppCompatActivity implements ListView.OnIt
     protected void onResume() {
         super.onResume();
 
-        requestReadContactsPermissions();
+        requestReadContactsPermissions();//requesting Read Contacts Permission
     }
 
     private void requestReadContactsPermissions(){

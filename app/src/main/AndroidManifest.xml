@@ -67,6 +67,7 @@
             android:permission="com.nitin.pluralchat.MESSAGE_USER">
         </receiver>
 
+        <!--permission for reading and writing updated here-->
         <provider
             android:authorities="com.nitin.pluralchat.ChatContactsProvider"
             android:name="messagelistscreen.ChatContactsProvider"

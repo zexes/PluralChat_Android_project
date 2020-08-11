@@ -2,8 +2,10 @@ package com.nitin.pluralchat.chatlistscreen;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,7 +41,18 @@ public class ChatListActivity extends AppCompatActivity implements ListView.OnIt
     protected void onResume() {
         super.onResume();
 
-        requestReadContactsPermissions();//requesting Read Contacts Permission
+//        requestReadContactsPermissions();//requesting Read Contacts Permission
+        requestLocationPermission();
+    }
+
+    private void requestLocationPermission(){
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            return;
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                101);
     }
 
     private void requestReadContactsPermissions(){
@@ -47,6 +60,9 @@ public class ChatListActivity extends AppCompatActivity implements ListView.OnIt
                 new String[]{Manifest.permission.READ_SMS},
                 100);
     }
+
+
+
 
     private void updateChatList(){
         ChatListItem temp = new ChatListItem("Harry", "How are you son?", "9:30pm");

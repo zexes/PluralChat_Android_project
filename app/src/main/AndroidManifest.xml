@@ -2,6 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nitin.pluralchat">
 
+    <permission
+        android:name="com.nitin.pluralchat.MESSAGE_USER"
+        android:label="@string/permission_message_user_label"
+        android:description="@string/permission_message_user_description"
+        android:protectionLevel="normal">
+    </permission>
+
+    <!--permission for reading-->
+    <permission
+        android:name="com.nitin.pluralchat.READ_CHAT_CONTACTS"
+        android:label="@string/permission_read_contacts_label"
+        android:description="@string/permission_read_contacts_description"
+        android:protectionLevel="normal">
+    </permission>
+
+    <!--permission for writing-->
+    <permission
+        android:name="com.nitin.pluralchat.WRITE_CHAT_CONTACTS"
+        android:label="@string/permission_write_contacts_label"
+        android:description="@string/permission_write_contacts_description"
+        android:protectionLevel="normal">
+    </permission>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--Adding camera permission, in case u r not sure if hardware has, used uses-feature -->
@@ -31,7 +54,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="messagelistscreen.MessageListActivity"></activity>
+        <activity
+            android:name="messagelistscreen.MessageListActivity"
+            android:exported="true"
+            android:permission="com.nitin.pluralchat.MESSAGE_USER">
+        </activity>
+
+        <receiver
+            android:name="messagelistscreen.UserStatusUpdateReceiver"
+            android:exported="true"
+            android:enabled="true"
+            android:permission="com.nitin.pluralchat.MESSAGE_USER">
+        </receiver>
+
+        <provider
+            android:authorities="com.nitin.pluralchat.ChatContactsProvider"
+            android:name="messagelistscreen.ChatContactsProvider"
+            android:readPermission="com.nitin.pluralchat.READ_CHAT_CONTACTS"
+            android:writePermission="com.nitin.pluralchat.WRITE_CHAT_CONTACTS">
+        </provider>
     </application>
 
 </manifest>
